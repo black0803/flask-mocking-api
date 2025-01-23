@@ -29,5 +29,5 @@ jobs:
         context: .
         push: ${{ github.event_name != 'pull_request' }}
         tags: |
-          ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.repository }}:latest
-          ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.repository }}:${{ github.sha }}
+          ${{ secrets.DOCKERHUB_USERNAME }}/flask-mocking-api:latest
+          ${{ secrets.DOCKERHUB_USERNAME }}/flask-mocking-api:${{ github.sha }}
