@@ -1,7 +1,10 @@
 from flask import Flask, render_template, request, send_file
 from modules.generate_image import draw
 from modules.transform import transform
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
 app = Flask(__name__)
 
 @app.get("/")
@@ -18,8 +21,9 @@ def submit():
             "result": result
         }
     else:
-        return send_file(draw(result), mimetype='image/jpeg')
+        return send_file(draw(result,file_path=os.getenv('OUTPUT_DIR')), mimetype='image/jpeg')
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    from waitress import serve
+    serve(app, host="0.0.0.0", port=8080)

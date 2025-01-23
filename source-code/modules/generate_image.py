@@ -15,7 +15,7 @@ def get_font_size(size, text, max_length):
     else:
         return target_size
 
-def draw(text):
+def draw(text, file_path=""):
     template = Image.open("image-template/template.jpeg")
     image = ImageDraw.Draw(template)
     img_w, img_h = template.size
@@ -23,6 +23,6 @@ def draw(text):
     myFont = ImageFont.truetype('image-template/impact.ttf', font_size)
     txt_r, txt_b = image.textbbox((0,0), text, font=myFont)[2], image.textbbox((0,0), text, font=myFont)[3]
     image.text(((img_w-txt_r)/2,img_h-txt_b-offset), text, font=myFont, fill=(255, 255, 255))
-    file = "output-" + datetime.now().strftime('%Y-%m-%d-%H-%M-%S') + ".jpeg"
+    file = file_path + "output-" + datetime.now().strftime('%Y-%m-%d-%H-%M-%S') + ".jpeg"
     template.save(file)
     return file
